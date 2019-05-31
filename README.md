@@ -7,4 +7,4 @@ Example Input: 8+2*(21/(7-4)+2)
 
 Screenshot from Program:
 
-![Alt-Text](/ss.png)
+
