@@ -35,10 +35,10 @@ char pop_c(charStack* stack){
 	stack->array[stack->curr--]='\0';
 	return tmp;
 }
-int oncelik(char ilk, char ikinci){ //1 Verirse ilki daha fazla önceliklidir demektir. 
+int oncelik(char ilk, char ikinci){ //returning 1 means its priority is first
 	return ((ilk=='*' || ilk == '/') && (ikinci=='+' || ikinci == '-'));
 }
-float islem(numStack* sayiStack, char isaret){ //sayıların bulunduğu stacktaki işlemleri işarete göre yapar
+float islem(numStack* sayiStack, char isaret){ 
 	float sayi2=pop(sayiStack);
 	float sayi1=pop(sayiStack);
 	switch(isaret){
@@ -85,7 +85,7 @@ int main(){
 	int i=0, k=0,l=0;
 	char tmp[4];
 	char buffer[MAX_INPUT_SIZE];
-	printf("Islemi giriniz: ");
+	printf("Enter the process: ");
 	gets(buffer);
 	
 	char tmpn;
@@ -117,10 +117,9 @@ int main(){
 					else{
 						do{
 							char a = pop_c(isaretStack);
-							//printf("\na: %c\n",a);
+
 							push(sayiStack,islem(sayiStack,a));		
-							/*printStack(sayiStack);
-							printStack_c(isaretStack);	*/				
+			
 						}while( isEmpty_c(isaretStack)!=1 && oncelik(isaretStack->array[isaretStack->curr],buffer[i])==1);
 						push_c(isaretStack,buffer[i]);
 					}	
@@ -139,7 +138,7 @@ int main(){
 		printStack(sayiStack);
 		printStack_c(isaretStack);
 	}
-	printf("Sonuc: %.1f" ,sayiStack->array[0]);
+	printf("Output: %.1f" ,sayiStack->array[0]);
 	return 0;	
 
 }
